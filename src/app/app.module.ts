@@ -7,17 +7,21 @@ import { JobListComponent } from './job-list/job-list.component';
 import {HttpClientModule} from '@angular/common/http';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {JobService} from './services/job.service';
+import { JobAddFormComponent } from './job-add-form/job-add-form.component';
+import {ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     SearchComponent,
-    JobListComponent
+    JobListComponent,
+    JobAddFormComponent
   ],
   imports: [
     NgbModule,
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [JobService],
   bootstrap: [AppComponent]
