@@ -10,20 +10,32 @@ import {JobService} from './services/job.service';
 import { JobAddFormComponent } from './job-add-form/job-add-form.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import { DaysAgoPipe } from './pipes/days-ago.pipe';
+import { HomeComponent } from './home/home.component';
+import { JobDetailsComponent } from './job-details/job-details.component';
+import {RouterModule} from '@angular/router';
 
+const routes = [
+  { path: '', component: HomeComponent },
+  { path: 'jobs/:id', component: JobDetailsComponent },
+  { path: 'jobs', component: JobListComponent },
+];
 @NgModule({
   declarations: [
     AppComponent,
     SearchComponent,
     JobListComponent,
     JobAddFormComponent,
-    DaysAgoPipe
+    DaysAgoPipe,
+    HomeComponent,
+    JobDetailsComponent
   ],
   imports: [
+    RouterModule,
     NgbModule,
     BrowserModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterModule.forRoot(routes),
   ],
   providers: [JobService],
   bootstrap: [AppComponent]
