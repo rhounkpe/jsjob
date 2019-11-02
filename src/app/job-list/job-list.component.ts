@@ -24,6 +24,11 @@ export class JobListComponent implements OnInit {
       },
       complete: () => console.log('Completed!')
     });
+
+    this.jobService.jobsSubject.subscribe(data => {
+      console.log(data);
+      this.jobs = [data, ...this.jobs];
+    });
   }
 
 }
