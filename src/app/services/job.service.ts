@@ -22,6 +22,13 @@ export class JobService {
       );
   }
 
+  getJobById(id) {
+    return this.http.get(`${this.BASE_URL}/${this.BASE_URL_PREFIX}/jobs/${id}`)
+      .pipe(
+        tap(job => console.log(job)),
+      );
+  }
+
   addJob(jobData) {
     jobData.id = Date.now();
     return this.http.post(`${this.BASE_URL}/${this.BASE_URL_PREFIX}/jobs`, jobData).pipe(
