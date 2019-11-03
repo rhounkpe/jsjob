@@ -1,8 +1,14 @@
 <div *ngIf="jobDetails">
   <h2>Job details</h2>
   <pre>{{jobDetails | json}}</pre>
+  <hr>
+  Publié le {{jobDetails.publishdate | toShortDate}}
 </div>
 
 <div *ngIf="errorMessage">
   Désolé: {{errorMessage}}
+</div>
+
+<div *ngIf="error">
+  <pre>{{error | json}}</pre>
 </div>
