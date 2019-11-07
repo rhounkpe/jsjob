@@ -16,6 +16,7 @@ import {RouterModule} from '@angular/router';
 import { AboutComponent } from './about/about.component';
 import { ToShortDatePipe } from './pipes/to-short-date.pipe';
 import { CurrencyToSymbolPipe } from './pipes/currency-to-symbol.pipe';
+import { SearchResultsComponent } from './search-results/search-results.component';
 
 const routes = [
   { path: '', component: HomeComponent },
@@ -35,7 +36,8 @@ const routes = [
     JobDetailsComponent,
     AboutComponent,
     ToShortDatePipe,
-    CurrencyToSymbolPipe
+    CurrencyToSymbolPipe,
+    SearchResultsComponent
   ],
   imports: [
     RouterModule,

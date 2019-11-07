@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable, of, Subject} from 'rxjs';
 import {map, tap} from 'rxjs/operators';
+import {withIdentifier} from 'codelyzer/util/astQuery';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,10 @@ export class JobService {
   private BASE_URL = 'http://localhost:4201';
   BASE_URL_PREFIX = 'api';
   jobs: any[] = []; // récupère les jobs créés par notre formulaire.
+
   jobsSubject = new Subject();
+
+  searchResultSubject = new Subject();
 
   constructor(private http: HttpClient) {
   }
@@ -40,7 +44,7 @@ export class JobService {
     console.log(criteria);
     return this.http.get(`${this.BASE_URL}/${this.BASE_URL_PREFIX}/search/${criteria.term}/${criteria.place}`)
       .pipe(
-        tap(res => console.log(res))
+        tap(res => this.searchResultSubject.next(res))
       );
   }
 }
