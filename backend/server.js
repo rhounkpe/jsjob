@@ -17,6 +17,8 @@ const fakeUser = {
   password: 'Pa$$w0rd'
 };
 
+const secret = '$!7;~}d32"Z;-^`TchH*Am6Lzge}7/)(vV2S_tNj?g+/T2NFTKP$FnZ3>LG9`^-[~-S?pLL4&)ZVP(<55k,r/`Wp&w<rv8}Lcp_$7H4+ae`a%{hTz66UdDTS:c]vLJ?`B<Y?@Gmm';
+
 // app.use(bodyParser({extended: true}))
 app.use(bodyParser.json());
 
@@ -34,12 +36,17 @@ const auth = express.Router();
 auth.post('/login', (req, res) => {
   if (req.body) {
     const email = req.body.email.toLocaleLowerCase();
-    const password = req.body.password.toLocaleLowerCase();
+    const password = req.body.password;
     if (email === fakeUser.email && password === fakeUser.password) {
       delete req.body.password;
+
+      const token = jwt.sign({
+        issuer: 'http://localhost:4201',
+        role: 'admin',
+      }, secret);
       res.json({
-        success: false,
-        data: req.body
+        success: true,
+        token,
       });
     } else {
       res.json({
