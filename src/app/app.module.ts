@@ -27,7 +27,6 @@ const routes = [
   { path: 'jobs', component: JobListComponent },
   { path: 'about', component: AboutComponent },
   { path: 'auth/login', component: AuthenticationComponent },
-  { path: 'auth/register', component: AuthenticationComponent },
 ];
 @NgModule({
   declarations: [

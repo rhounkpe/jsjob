@@ -17,5 +17,13 @@ export class AuthService {
         tap(data => console.log(`Received from auth.service: ${data}`))
     );
   }
+
+  userIsLoggedIn() {
+    return localStorage.getItem('jbb-data');
+  }
+
+  logOut() {
+    localStorage.removeItem('jbb-data');
+  }
 }
 

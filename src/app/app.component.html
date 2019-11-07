@@ -6,7 +6,10 @@
         <li><a href="#" routerLink="/jobs">Offres</a></li>
         <li><a href="#" routerLink="/jobs/add">Créer une Offre</a></li>
         <li><a href="#" routerLink="/about">à propos</a></li>
-        <li><a href="#" routerLink="/login">Login</a></li>
+        <li>
+          <a href="#" routerLink="/auth/login" *ngIf="!authService.userIsLoggedIn()">Login</a>
+          <a href="#" (click)="authService.logOut()" *ngIf="authService.userIsLoggedIn()">Logout</a>
+        </li>
       </ul>
     </div>
   </div>
