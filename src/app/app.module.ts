@@ -17,6 +17,7 @@ import { AboutComponent } from './about/about.component';
 import { ToShortDatePipe } from './pipes/to-short-date.pipe';
 import { CurrencyToSymbolPipe } from './pipes/currency-to-symbol.pipe';
 import { SearchResultsComponent } from './search-results/search-results.component';
+import { AuthenticationComponent } from './authentication/authentication.component';
 
 const routes = [
   { path: '', component: HomeComponent },
@@ -24,6 +25,8 @@ const routes = [
   { path: 'jobs/:id', component: JobDetailsComponent },
   { path: 'jobs', component: JobListComponent },
   { path: 'about', component: AboutComponent },
+  { path: 'login', component: AuthenticationComponent },
+  { path: 'register', component: AuthenticationComponent },
 ];
 @NgModule({
   declarations: [
@@ -37,7 +40,8 @@ const routes = [
     AboutComponent,
     ToShortDatePipe,
     CurrencyToSymbolPipe,
-    SearchResultsComponent
+    SearchResultsComponent,
+    AuthenticationComponent
   ],
   imports: [
     RouterModule,
