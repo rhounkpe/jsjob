@@ -43,6 +43,7 @@ auth.post('/login', (req, res) => {
       const token = jwt.sign({
         issuer: 'http://localhost:4201',
         role: 'admin',
+        email: req.body.email,
       }, secret);
       res.json({
         success: true,

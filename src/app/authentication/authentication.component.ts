@@ -8,6 +8,10 @@ import {AuthService} from '../services/auth.service';
 })
 export class AuthenticationComponent implements OnInit {
 
+  jbbData = null;
+  isAuthenticated = false;
+  welcomeMessage = '';
+
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
@@ -15,13 +19,17 @@ export class AuthenticationComponent implements OnInit {
 
   login(formData) {
     this.authService.login(formData).subscribe({
-      next: data => this.handleLoginSuccess,
-      error: err => this.handleLoginFailure
+      next: data => this.handleLoginSuccess(data),
+      error: err => this.handleLoginFailure(err),
     });
   }
 
   handleLoginSuccess(data) {
     console.log('success', data);
+    this.jbbData = data;
+    this.isAuthenticated = true;
+    this.welcomeMessage = `Bienvenue ${data.email}`;
+    localStorage.setItem('jbb-data', JSON.stringify(data));
   }
 
   handleLoginFailure(error) {
