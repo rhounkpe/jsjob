@@ -8,7 +8,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {JobService} from './services/job.service';
 import { JobAddFormComponent } from './job-add-form/job-add-form.component';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { DaysAgoPipe } from './pipes/days-ago.pipe';
 import { HomeComponent } from './home/home.component';
 import { JobDetailsComponent } from './job-details/job-details.component';
@@ -44,6 +44,7 @@ const routes = [
     HttpClientModule,
     ReactiveFormsModule,
     RouterModule.forRoot(routes),
+    FormsModule,
   ],
   providers: [JobService],
   bootstrap: [AppComponent]

@@ -36,6 +36,7 @@ api.post('/jobs', (req, res) => {
 
 api.get('/search/:term/:place?', (req, res) => {
   const term = req.params.term.toLowerCase().trim();
+
   let place = req.params.place;
 
   let jobs = getAllJobs().filter(
@@ -44,7 +45,7 @@ api.get('/search/:term/:place?', (req, res) => {
   if (place) {
     place = place.toLowerCase().trim();
     jobs = jobs.filter(
-      j => (j.city.toLowerCase().includes(place))
+      job => (job.city.toLowerCase().includes(place))
     );
   }
   res.json({

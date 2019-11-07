@@ -35,4 +35,12 @@ export class JobService {
       tap(res => console.log(res))
     );
   }
+
+  searchJob(criteria) {
+    console.log(criteria);
+    return this.http.get(`${this.BASE_URL}/${this.BASE_URL_PREFIX}/search/${criteria.term}/${criteria.place}`)
+      .pipe(
+        tap(res => console.log(res))
+      );
+  }
 }
