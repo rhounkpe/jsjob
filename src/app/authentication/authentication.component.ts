@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {AuthService} from '../services/auth.service';
 
 @Component({
   selector: 'cc-authentication',
@@ -7,13 +8,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AuthenticationComponent implements OnInit {
 
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
   }
 
   login(formData) {
-    console.log(formData);
+    this.authService.login(formData).subscribe({
+      next: data => this.handleLoginSuccess,
+      error: err => this.handleLoginFailure
+    });
   }
 
+  handleLoginSuccess(data) {
+    console.log('success', data);
+  }
+
+  handleLoginFailure(error) {
+  console.error('failure ', error);
+  }
 }
