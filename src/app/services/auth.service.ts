@@ -19,8 +19,8 @@ export class AuthService {
     );
   }
 
-  userIsLoggedIn() {
-    return localStorage.getItem('jbb-data');
+  userIsLoggedIn(): boolean {
+    return !!localStorage.getItem('jbb-data');
   }
 
   logOut() {
