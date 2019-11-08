@@ -15,14 +15,31 @@ const getAllJobs = () => {
 
 users = [];
 
-const fakeUser = {
+const rufin = {
   id: 1,
   email: 'rhounkpe@yahoo.fr',
   nickname: 'rhounkpe',
-  password: 'Pa$$w0rd'
+  password: 'Pa$$w0rd',
+  role: 'admin',
 };
 
-users.push(fakeUser);
+const dominique = {
+  id: 1,
+  email: 'dominique@yahoo.fr',
+  nickname: 'dominique',
+  password: 'Pa$$w0rd',
+  role: 'manager',
+};
+
+const arno = {
+  id: 1,
+  email: 'arno@yahoo.fr',
+  nickname: 'arno',
+  password: 'Pa$$w0rd',
+  role: 'user',
+};
+
+users.push(rufin, dominique, arno);
 
 const secret = '$!7;~}d32"Z;-^`TchH*Am6Lzge}7/)(vV2S_tNj?g+/T2NFTKP$FnZ3>LG9`^-[~-S?pLL4&)ZVP(<55k,r/`Wp&w<rv8}Lcp_$7H4+ae`a%{hTz66UdDTS:c]vLJ?`B<Y?@Gmm';
 
@@ -47,12 +64,15 @@ auth.post('/login', (req, res) => {
 
     const index = users.findIndex(user => user.email === email);
 
+    let user;
 
     if (index > -1 && users[index].password === password) {
+      user = users[index];
+
       const token = jwt.sign({
         issuer: 'http://localhost:4201',
-        role: 'admin',
-        email: req.body.email,
+        role: user.role,
+        email: user.email,
       }, secret);
       res.status(200).json({
         success: true,
