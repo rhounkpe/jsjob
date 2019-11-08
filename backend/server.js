@@ -124,13 +124,20 @@ auth.post('/register', (req, res) => {
 const checkUserToken = (req, res, next) => {
   if (!req.header('authorization')) return res.status(401).json({ success: false, message: 'Not authorized' });
 
+  console.info(`req.header.authorization = ${req.header('authorization')}`);
+
   const authorizationParts = req.header('authorization').split(' ');
   const token = authorizationParts[1];
 
-  const decodedToken = jwt.verify(token, secret);
-  console.log(`decoded token = ${decodedToken}`);
-
-  next();
+  jwt.verify(token, secret, (err, decodedToken) => {
+    if (err) {
+      console.error(err);
+      return res.status(401).json({ success: false, message: 'Token non valide' });
+    } else {
+      console.log(`decoded token = ${JSON.stringify(decodedToken)}`);
+      next();
+    }
+  });
 };
 
 api.get('/jobs', (req, res) => {
