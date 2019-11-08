@@ -66,7 +66,7 @@ auth.post('/login', (req, res) => {
 
     let user;
 
-    if (index > -1 && users[index].password === password) {
+    if ((index > -1) && (users[index].password === password)) {
       user = users[index];
 
       const token = jwt.sign({
@@ -133,11 +133,11 @@ const checkUserToken = (req, res, next) => {
   next();
 };
 
-api.get('/jobs', checkUserToken, (req, res) => {
+api.get('/jobs', (req, res) => {
   res.json(getAllJobs());
 });
 
-api.post('/jobs', (req, res) => {
+api.post('/jobs', checkUserToken, (req, res) => {
   const job = req.body;
   console.log(job);
   addedJobs = [job, ...addedJobs];

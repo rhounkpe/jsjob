@@ -69,7 +69,8 @@ export class JobAddFormComponent implements OnInit {
   }
 
   createJob(jobData) {
-    this.jobService.addJob(jobData).subscribe();
+    const token = JSON.parse(localStorage.getItem('jbb-data')).token;
+    this.jobService.addJob(jobData, token).subscribe();
     this.form.reset();
   }
 

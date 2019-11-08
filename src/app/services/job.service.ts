@@ -1,8 +1,9 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable, of, Subject} from 'rxjs';
 import {map, tap} from 'rxjs/operators';
 import {withIdentifier} from 'codelyzer/util/astQuery';
+import {AuthService} from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,7 @@ export class JobService {
 
   searchResultSubject = new Subject();
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private authService: AuthService) {
   }
 
   getJobs(): Observable<any> {
@@ -33,10 +34,12 @@ export class JobService {
       );
   }
 
-  addJob(jobData) {
+  addJob(jobData: any, token) {
+    const httpOptions: HttpHeaders = this.authService.addAuthorizationHeader(token);
     jobData.id = Date.now();
-    return this.http.post(`${this.BASE_URL}/${this.BASE_URL_PREFIX}/jobs`, jobData).pipe(
-      tap(res => console.log(res))
+
+    return this.http.post(`${this.BASE_URL}/${this.BASE_URL_PREFIX}/jobs`, jobData, { headers: httpOptions }).pipe(
+      tap(res => this.jobsSubject.next(res))
     );
   }
 
