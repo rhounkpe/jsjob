@@ -18,6 +18,7 @@ users = [];
 const fakeUser = {
   id: 1,
   email: 'rhounkpe@yahoo.fr',
+  nickname: 'rhounkpe',
   password: 'Pa$$w0rd'
 };
 
@@ -73,9 +74,11 @@ auth.post('/register', (req, res) => {
   if (req.body) {
     const email = req.body.email.trim();
     const password = req.body.password.trim();
+    const nickname = req.body.nickname.trim();
     const user = {
       id: Date.now(),
       email,
+      nickname,
       password,
     };
 

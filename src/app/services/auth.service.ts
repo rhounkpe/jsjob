@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {tap} from 'rxjs/operators';
 import {Observable} from 'rxjs';
+import * as jwtDecode from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root'
@@ -31,6 +32,10 @@ export class AuthService {
       .pipe(
         tap(data => console.log(`Received from auth.service for register operation: ${credentials}`))
       );
+  }
+
+  decodeToken(token) {
+    return jwtDecode(token);
   }
 }
 

@@ -13,6 +13,9 @@
         <li>
           <a href="#" routerLink="/auth/register" *ngIf="!authService.userIsLoggedIn()">Register</a>
         </li>
+        <li>
+          <a href="#" routerLink="/auth/profile" *ngIf="authService.userIsLoggedIn()">Mon profil</a>
+        </li>
       </ul>
     </div>
   </div>
