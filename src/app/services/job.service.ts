@@ -1,9 +1,10 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable, of, Subject} from 'rxjs';
-import {map, tap} from 'rxjs/operators';
+import {filter, map, tap} from 'rxjs/operators';
 import {withIdentifier} from 'codelyzer/util/astQuery';
 import {AuthService} from './auth.service';
+import {Data} from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -26,6 +27,14 @@ export class JobService {
         map((res: any[]) => res)
       );
   }
+
+  getJobsByUser(user: any): Observable<any> {
+    return this.http.get(`${this.BASE_URL}/${this.BASE_URL_PREFIX}/jobs/${user.email}`)
+      .pipe(
+        tap(data => console.log(`List des annonces de cet utilisateur: ${JSON.stringify(data)}`))
+      );
+  }
+
 
   getJobById(id) {
     return this.http.get(`${this.BASE_URL}/${this.BASE_URL_PREFIX}/jobs/${id}`)

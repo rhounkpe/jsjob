@@ -144,6 +144,18 @@ api.get('/jobs', (req, res) => {
   res.json(getAllJobs());
 });
 
+api.get('/jobs/:email', (req, res) => {
+  const email = req.params.email;
+
+  // const jobs = getAllJobs().filter(job => (job.email === email));
+  const jobs = getAllJobs().filter(job => job.email === email);
+
+  res.status(200).json({
+    success: true,
+    jobs,
+  });
+});
+
 api.post('/jobs', checkUserToken, (req, res) => {
   const job = req.body;
   console.log(job);

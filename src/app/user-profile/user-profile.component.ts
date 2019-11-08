@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../services/auth.service';
+import {JobService} from '../services/job.service';
 
 @Component({
   selector: 'cc-user-profile',
@@ -11,7 +12,10 @@ export class UserProfileComponent implements OnInit {
   decodedToken = null;
   isAdmin = false;
 
-  constructor(private authService: AuthService) { }
+  userJobs: any[] = [];
+
+  constructor(private authService: AuthService, private jobService: JobService) {
+  }
 
   ngOnInit() {
     if (this.authService.userIsLoggedIn()) {
@@ -23,7 +27,19 @@ export class UserProfileComponent implements OnInit {
       if (this.decodedToken && this.decodedToken.role === 'admin') {
         this.isAdmin = true;
       }
+
+      if (this.decodedToken && this.decodedToken.email) {
+        // TODO: decodedToken is not a user. We need to handle this
+        this.loadUserAds(this.decodedToken);
+      }
     }
   }
 
+  loadUserAds(user: any) {
+    return this.jobService.getJobsByUser(user).subscribe({
+        next: jobs => this.userJobs = jobs,
+        error: err => console.error(err)
+      }
+    );
+  }
 }

@@ -14,3 +14,8 @@
 <div *ngIf="!isAdmin">
   Je suis autre chose
 </div>
+
+<div *ngIf="decodedToken">
+  <h2>Liste des annonces de cet utilisateur</h2>
+  <pre>{{ userJobs | json}}</pre>
+</div>
