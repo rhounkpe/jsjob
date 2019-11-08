@@ -21,6 +21,7 @@ import { AuthenticationComponent } from './authentication/authentication.compone
 import {AuthService} from './services/auth.service';
 import { RegisterComponent } from './register/register.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { TruncatePipe } from './pipes/truncate/truncate.pipe';
 
 const routes = [
   { path: '', component: HomeComponent },
@@ -48,7 +49,8 @@ const routes = [
     SearchResultsComponent,
     AuthenticationComponent,
     RegisterComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    TruncatePipe
   ],
   imports: [
     RouterModule,
