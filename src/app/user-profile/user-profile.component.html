@@ -5,3 +5,12 @@
 <div *ngIf="!decodedToken">
   Aucun utilisateur trouvé!
 </div>
+
+<div *ngIf="isAdmin">
+  Je suis tout puissant
+</div>
+
+
+<div *ngIf="!isAdmin">
+  Je suis autre chose
+</div>

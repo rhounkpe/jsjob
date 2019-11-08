@@ -9,6 +9,7 @@ import {AuthService} from '../services/auth.service';
 export class UserProfileComponent implements OnInit {
 
   decodedToken = null;
+  isAdmin = false;
 
   constructor(private authService: AuthService) { }
 
@@ -18,6 +19,10 @@ export class UserProfileComponent implements OnInit {
       this.decodedToken = this.authService.decodeToken(jbbToken.token);
 
       console.log(`Decoded token is: ${JSON.stringify(this.decodedToken)}`);
+
+      if (this.decodedToken && this.decodedToken.role === 'admin') {
+        this.isAdmin = true;
+      }
     }
   }
 
