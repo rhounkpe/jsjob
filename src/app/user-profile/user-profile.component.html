@@ -1,3 +1,7 @@
 <div *ngIf="decodedToken">
   <pre>{{ decodedToken | json}}</pre>
 </div>
+
+<div *ngIf="!decodedToken">
+  Aucun utilisateur trouvé!
+</div>

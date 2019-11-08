@@ -22,6 +22,8 @@ const fakeUser = {
   password: 'Pa$$w0rd'
 };
 
+users.push(fakeUser);
+
 const secret = '$!7;~}d32"Z;-^`TchH*Am6Lzge}7/)(vV2S_tNj?g+/T2NFTKP$FnZ3>LG9`^-[~-S?pLL4&)ZVP(<55k,r/`Wp&w<rv8}Lcp_$7H4+ae`a%{hTz66UdDTS:c]vLJ?`B<Y?@Gmm';
 
 // app.use(bodyParser({extended: true}))
@@ -42,26 +44,28 @@ auth.post('/login', (req, res) => {
   if (req.body) {
     const email = req.body.email.toLocaleLowerCase();
     const password = req.body.password;
-    if (email === fakeUser.email && password === fakeUser.password) {
-      delete req.body.password;
 
+    const index = users.findIndex(user => user.email === email);
+
+
+    if (index > -1 && users[index].password === password) {
       const token = jwt.sign({
         issuer: 'http://localhost:4201',
         role: 'admin',
         email: req.body.email,
       }, secret);
-      res.json({
+      res.status(200).json({
         success: true,
         token,
       });
     } else {
-      res.json({
+      res.status(401).json({
         success: false,
         message: 'identifiant incorrects'
       });
     }
   } else {
-    res.json({
+    res.status(500).json({
       success: false,
       message: 'données manquantes'
     });
