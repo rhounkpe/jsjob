@@ -16,7 +16,7 @@ exports.jobs = [
     "field": "aéronautique",
     "publishdate": "02/17/2017",
     "lastupdate": "05/01/2017",
-    "email": "rhounkpe@yahoo.fr",
+    "email": "arno@yahoo.fr",
   },
   {
     "id": 2,
@@ -35,7 +35,7 @@ exports.jobs = [
     "field": "édition",
     "publishdate": "06/04/2017",
     "lastupdate": "06/04/2017",
-    "email": "rhounkpe@yahoo.fr",
+    "email": "arno@yahoo.fr",
   },
   {
     "id": 3,
@@ -54,7 +54,7 @@ exports.jobs = [
     "field": "secteur d'avenir",
     "publishdate": "05/07/2017",
     "lastupdate": "06/04/2017",
-    "email": "arno@yahoo.fr",
+    "email": "dominique@yahoo.fr",
   },
   {
     "id": 4,
@@ -73,6 +73,6 @@ exports.jobs = [
     "field": "le monde du livre",
     "publishdate": "06/02/2017",
     "lastupdate": "06/02/2017",
-    "email": "dominique@yahoo.fr",
+    "email": "arno@yahoo.fr",
   }
 ];

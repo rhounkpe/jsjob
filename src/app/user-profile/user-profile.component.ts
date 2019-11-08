@@ -30,7 +30,13 @@ export class UserProfileComponent implements OnInit {
 
       if (this.decodedToken && this.decodedToken.email) {
         // TODO: decodedToken is not a user. We need to handle this
-        this.loadUserAds(this.decodedToken);
+        if (this.isAdmin) {
+          this.jobService.getJobs().subscribe({
+            next: jobs => this.userJobs = jobs
+          });
+        } else {
+          this.loadUserAds(this.decodedToken);
+        }
       }
     }
   }
