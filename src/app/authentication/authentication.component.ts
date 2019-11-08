@@ -15,7 +15,9 @@ export class AuthenticationComponent implements OnInit {
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
-    this.refreshFlags();
+    if (this.authService.userIsLoggedIn()) {
+      this.refreshFlags();
+    }
   }
 
   refreshFlags() {

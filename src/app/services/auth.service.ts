@@ -25,5 +25,12 @@ export class AuthService {
   logOut() {
     localStorage.removeItem('jbb-data');
   }
+
+  register(credentials) {
+    return this.http.post(`${this.BASE_URL}/${this.BASE_URL_PREFIX}/register`, credentials)
+      .pipe(
+        tap(data => console.log(`Received from auth.service for register operation: ${credentials}`))
+      );
+  }
 }
 

@@ -10,6 +10,9 @@
           <a href="#" routerLink="/auth/login" *ngIf="!authService.userIsLoggedIn()">Login</a>
           <a href="#" (click)="authService.logOut()" *ngIf="authService.userIsLoggedIn()">Logout</a>
         </li>
+        <li>
+          <a href="#" routerLink="/auth/register" *ngIf="!authService.userIsLoggedIn()">Register</a>
+        </li>
       </ul>
     </div>
   </div>

@@ -12,7 +12,11 @@ const getAllJobs = () => {
   return [...addedJobs, ...initialJobs];
 };
 
+
+users = [];
+
 const fakeUser = {
+  id: 1,
   email: 'rhounkpe@yahoo.fr',
   password: 'Pa$$w0rd'
 };
@@ -64,8 +68,34 @@ auth.post('/login', (req, res) => {
 });
 
 
+auth.post('/register', (req, res) => {
+  console.log('req.body: ', req.body);
+  if (req.body) {
+    const email = req.body.email.trim();
+    const password = req.body.password.trim();
+    const user = {
+      id: Date.now(),
+      email,
+      password,
+    };
+
+    users = [user, ...users];
+
+    res.json({
+      success: true,
+      user,
+      users,
+    });
+  } else {
+    res.json({
+      success: false,
+      message: 'Echec de la création de un nouvel utilisateur',
+    });
+  }
+});
+
+
 api.get('/jobs', (req, res) => {
-  // res.json(data.jobs);
   res.json(getAllJobs());
 });
 
