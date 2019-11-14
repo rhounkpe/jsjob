@@ -22,6 +22,10 @@ import {AuthService} from './services/auth.service';
 import { RegisterComponent } from './register/register.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { TruncatePipe } from './pipes/truncate/truncate.pipe';
+import {CompanyAuthenticationComponent} from './authentication/company/authentication/company.authentication.component';
+import { CompanyProfileComponent } from './company/company-profile/company-profile.component';
+import {RegiterCompanyComponent} from './company/regiter-company/regiter-company.component';
+
 
 const routes = [
   { path: '', component: HomeComponent },
@@ -32,6 +36,9 @@ const routes = [
   { path: 'auth/login', component: AuthenticationComponent },
   { path: 'auth/register', component: RegisterComponent },
   { path: 'auth/profile', component: UserProfileComponent },
+  { path: 'company/auth/login', component: CompanyAuthenticationComponent },
+  { path: 'company/auth/profile', component: UserProfileComponent },
+  { path: 'company/auth/register', component: RegiterCompanyComponent },
 ];
 
 @NgModule({
@@ -48,9 +55,12 @@ const routes = [
     CurrencyToSymbolPipe,
     SearchResultsComponent,
     AuthenticationComponent,
+    CompanyAuthenticationComponent,
     RegisterComponent,
     UserProfileComponent,
-    TruncatePipe
+    TruncatePipe,
+    CompanyProfileComponent,
+    RegiterCompanyComponent
   ],
   imports: [
     RouterModule,

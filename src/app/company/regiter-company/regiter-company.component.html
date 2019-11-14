@@ -1,0 +1,15 @@
+<div *ngIf="!companyAuthService.companyIsLoggedIn()">
+  <h3>Créer un compte company</h3>
+
+  <form #companyRegisterForm="ngForm" (ngSubmit)="register(companyRegisterForm.value)">
+    <input type="text" class="login-input" ngModel name="email" placeholder="email" required="required">
+    <br>
+    <input type="text" class="login-input" ngModel name="nickname" placeholder="nickname" required="required">
+    <br>
+    <input type="password" class="login-input" ngModel name="password" placeholder="mot de pass" required="requires">
+    <br>
+    <input type="password" class="login-input" ngModel name="confirm-password" placeholder="Confirmez votre mot de pass" required="requires">
+    <br>
+    <button type="submit" class="btn btn-success" [disabled]="companyRegisterForm.invalid">Créer</button>
+  </form>
+</div>

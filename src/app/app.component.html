@@ -6,16 +6,31 @@
         <li><a href="#" routerLink="/jobs">Offres</a></li>
         <li><a href="#" routerLink="/jobs/add">Créer une Offre</a></li>
         <li><a href="#" routerLink="/about">à propos</a></li>
+        <hr>
         <li>
-          <a href="#" routerLink="/auth/login" *ngIf="!authService.userIsLoggedIn()">Login</a>
-          <a href="#" (click)="authService.logOut()" *ngIf="authService.userIsLoggedIn()">Logout</a>
+          <a href="#" routerLink="/company/auth/login" *ngIf="!companyAuthService.companyIsLoggedIn()">Company Login</a>
+          <a href="#" (click)="companyAuthService.logout()" *ngIf="companyAuthService.companyIsLoggedIn()">Company Logout</a>
         </li>
         <li>
-          <a href="#" routerLink="/auth/register" *ngIf="!authService.userIsLoggedIn()">Register</a>
+          <a href="#" routerLink="/company/auth/register" *ngIf="!companyAuthService.companyIsLoggedIn()">Register Company</a>
+        </li>
+
+        <li>
+          <a href="#" routerLink="/company/auth/profile" *ngIf="companyAuthService.companyIsLoggedIn()">Company profil</a>
+        </li>
+<hr>
+        <li>
+          <a href="#" routerLink="/auth/login" *ngIf="!authService.userIsLoggedIn()">User Login</a>
+          <a href="#" (click)="authService.logOut()" *ngIf="authService.userIsLoggedIn()">User Logout</a>
+        </li>
+
+        <li>
+          <a href="#" routerLink="/auth/register" *ngIf="!authService.userIsLoggedIn()">User Register</a>
         </li>
         <li>
           <a href="#" routerLink="/auth/profile" *ngIf="authService.userIsLoggedIn()">Mon profil</a>
         </li>
+        <hr>
       </ul>
     </div>
   </div>
